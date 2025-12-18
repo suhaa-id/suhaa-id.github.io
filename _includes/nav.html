@@ -1,23 +1,68 @@
-<nav class="bg-[#8D6E63] text-white shadow-lg sticky top-0 z-50">
+<nav class="bg-[#8D6E63] text-white shadow-lg sticky top-0 z-50" role="navigation" aria-label="Main navigation">
   <div class="container mx-auto px-6 py-4 flex flex-col md:flex-row justify-between items-center max-w-5xl">
     
-    <a href="{{ site.baseurl }}/" class="text-2xl font-serif font-bold tracking-wide hover:text-gray-200 transition mb-4 md:mb-0">
+    <!-- Logo/Brand -->
+    <a href="{{ site.baseurl }}/" class="text-2xl font-serif font-bold tracking-wide hover:text-gray-200 transition mb-4 md:mb-0" aria-label="Go to homepage">
       Suhaa.id
     </a>
 
-    <ul class="flex space-x-6 items-center text-sm font-medium">
-      <li><a href="{{ site.baseurl }}/" class="hover:text-yellow-200 transition">Beranda</a></li>
-      <li><a href="{{ site.baseurl }}/about" class="hover:text-yellow-200 transition">Tentang</a></li>
+    <!-- Desktop Menu -->
+    <ul class="hidden md:flex space-x-6 items-center text-sm font-medium">
+      <li><a href="{{ site.baseurl }}/" class="hover:text-yellow-200 transition" aria-label="Home">Beranda</a></li>
+      <li><a href="{{ site.baseurl }}/about" class="hover:text-yellow-200 transition" aria-label="About">Tentang</a></li>
       
       <li class="relative group cursor-pointer">
-        <span class="flex items-center hover:text-yellow-200 py-2">
+        <span class="flex items-center hover:text-yellow-200 py-2" aria-haspopup="true" aria-expanded="false" role="button" tabindex="0">
           Kategori ▾
         </span>
-        <ul class="absolute right-0 mt-0 w-40 bg-white rounded-md shadow-xl py-2 hidden group-hover:block text-gray-800">
-          <li><a href="#" class="block px-4 py-2 hover:bg-[#F5F5F0] hover:text-[#8D6E63]">☕ Tulisan Rasa</a></li>
-          <li><a href="#" class="block px-4 py-2 hover:bg-[#F5F5F0] hover:text-[#8D6E63]">🗣️ Opini</a></li>
+        <ul class="absolute right-0 mt-0 w-48 bg-white rounded-md shadow-xl py-2 hidden group-hover:block text-gray-800 z-10" role="menu">
+          <li><a href="{{ site.baseurl }}/category/tulisan-rasa" class="block px-4 py-2 hover:bg-[#F5F5F0] hover:text-[#8D6E63] transition" role="menuitem" aria-label="Tulisan Rasa category">☕ Tulisan Rasa</a></li>
+          <li><a href="{{ site.baseurl }}/category/opini" class="block px-4 py-2 hover:bg-[#F5F5F0] hover:text-[#8D6E63] transition" role="menuitem" aria-label="Opini category">🗣️ Opini</a></li>
+        </ul>
+      </li>
+    </ul>
+
+    <!-- Mobile Menu Button -->
+    <button class="md:hidden flex items-center text-white hover:text-yellow-200 transition" aria-label="Toggle mobile menu" aria-expanded="false" id="mobile-menu-button">
+      <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
+      </svg>
+    </button>
+
+    <!-- Mobile Menu -->
+    <ul class="md:hidden flex flex-col space-y-4 mt-4 text-sm font-medium w-full" id="mobile-menu" style="display: none;">
+      <li><a href="{{ site.baseurl }}/" class="block py-2 hover:text-yellow-200 transition" aria-label="Home">Beranda</a></li>
+      <li><a href="{{ site.baseurl }}/about" class="block py-2 hover:text-yellow-200 transition" aria-label="About">Tentang</a></li>
+      
+      <li class="relative">
+        <span class="flex items-center py-2 cursor-pointer hover:text-yellow-200 transition" aria-haspopup="true" aria-expanded="false" role="button" tabindex="0" id="mobile-kategori-toggle">
+          Kategori ▾
+        </span>
+        <ul class="ml-4 mt-2 space-y-2 hidden" id="mobile-kategori-submenu" role="menu">
+          <li><a href="{{ site.baseurl }}/category/tulisan-rasa" class="block py-2 hover:text-yellow-200 transition" role="menuitem" aria-label="Tulisan Rasa category">☕ Tulisan Rasa</a></li>
+          <li><a href="{{ site.baseurl }}/category/opini" class="block py-2 hover:text-yellow-200 transition" role="menuitem" aria-label="Opini category">🗣️ Opini</a></li>
         </ul>
       </li>
     </ul>
   </div>
 </nav>
+
+<!-- Simple JavaScript for Mobile Menu Toggle (Add this in a <script> tag or external file) -->
+<script>
+  const mobileMenuButton = document.getElementById('mobile-menu-button');
+  const mobileMenu = document.getElementById('mobile-menu');
+  const mobileKategoriToggle = document.getElementById('mobile-kategori-toggle');
+  const mobileKategoriSubmenu = document.getElementById('mobile-kategori-submenu');
+
+  mobileMenuButton.addEventListener('click', () => {
+    const isExpanded = mobileMenu.style.display === 'block';
+    mobileMenu.style.display = isExpanded ? 'none' : 'block';
+    mobileMenuButton.setAttribute('aria-expanded', !isExpanded);
+  });
+
+  mobileKategoriToggle.addEventListener('click', () => {
+    const isExpanded = mobileKategoriSubmenu.classList.contains('hidden');
+    mobileKategoriSubmenu.classList.toggle('hidden');
+    mobileKategoriToggle.setAttribute('aria-expanded', !isExpanded);
+  });
+</script>
