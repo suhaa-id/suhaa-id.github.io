@@ -1,0 +1,16 @@
+# _config.yml
+title: "suhaa.id"
+email: priafahrian60@gmail.com
+description: >- # Deskripsi ini akan muncul di Google
+  Blog pribadi yang membahas perspektif hukum, dinamika politik,
+  dan catatan perasaan sehari-hari.
+baseurl: "" # Biarkan kosong jika menggunakan username.github.io
+url: "https://username-anda.github.io" 
+twitter_username: username_twitter
+github_username: username_github
+
+# Pengaturan Build
+markdown: kramdown
+theme: minima
+plugins:
+  - jekyll-seo-tag
