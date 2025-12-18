@@ -1,297 +1,146 @@
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>{% if page.title %}{{ page.title }} | {{ site.title }}{% else %}{{ site.title }}{% endif %}</title>
+  {% seo %}
+  
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Merriweather:wght@300;400;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+  
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+  
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css">
 
-/* ==========================================================================
-   1. SETTING DASAR & TYPOGRAPHY (BASE LAYER)
-   ========================================================================== */
-@layer base {
-  /* Smooth Scrolling & Font Rendering */
-  html {
-    scroll-behavior: smooth;
-    -webkit-font-smoothing: antialiased;
-    -moz-osx-font-smoothing: grayscale;
-  }
+  <script src="https://cdn.tailwindcss.com"></script>
 
-  body {
-    font-family: 'Inter', sans-serif;
-    background-color: #F9F9F7; /* Warna kertas lama */
-    color: #2D3748; /* Abu-abu gelap untuk readability */
-    line-height: 1.7; /* Sedikit dilonggarkan untuk kenyamanan baca */
-    transition: background-color 0.3s ease, color 0.3s ease;
-  }
+  <script>
+    tailwind.config = {
+      darkMode: 'class',
+      theme: {
+        extend: {
+          fontFamily: {
+            sans: ['Inter', 'sans-serif'],
+            serif: ['Merriweather', 'serif'],
+          },
+          colors: {
+            brown: {
+              50: '#EFEBE9',
+              100: '#D7CCC8',
+              200: '#BCAAA4',
+              400: '#8D6E63',
+              600: '#6D4C41',
+              800: '#5D4037',
+            }
+          }
+        }
+      }
+    }
+  </script>
 
-  /* Headings */
-  h1, h2, h3, h4, h5, h6 {
-    font-family: 'Merriweather', serif;
-    font-weight: 700;
-    line-height: 1.25;
-    color: #5D4037; /* Default cokelat tua */
-    margin-bottom: 0.75rem;
-  }
+  <style type="text/tailwindcss">
+    @layer base {
+      /* Setting Dasar */
+      html { scroll-behavior: smooth; }
+      body { @apply bg-[#F9F9F7] text-gray-800 transition-colors duration-300; }
+      
+      /* Dark Mode Base */
+      .dark body { @apply bg-gray-900 text-gray-100; }
+      
+      /* Typography Headings */
+      h1, h2, h3, h4, h5, h6 {
+        @apply font-serif font-bold text-brown-800 mb-3;
+      }
+      .dark h1, .dark h2, .dark h3, .dark h4, .dark h5, .dark h6 {
+        @apply text-gray-100;
+      }
 
-  /* Custom Text Selection (Warna saat teks di-blok) */
-  ::selection {
-    background-color: #8D6E63; /* Cokelat Sedang */
-    color: #ffffff;
-  }
-}
+      /* Styling Artikel Blog */
+      article a {
+        @apply text-brown-600 underline decoration-2 underline-offset-2 transition-colors;
+      }
+      article a:hover {
+        @apply text-brown-800 bg-brown-50;
+      }
+      .dark article a { @apply text-yellow-400; }
+      .dark article a:hover { @apply text-yellow-300 bg-transparent; }
 
-/* ==========================================================================
-   2. PALET WARNA KHUSUS SUHAA.ID (DIPERTAHANKAN & DIPERLUAS)
-   ========================================================================== */
-
-/* Cokelat Tua (Untuk Judul) */
-.text-brown-800 { color: #5D4037; }
-.bg-brown-800 { background-color: #5D4037; }
-.hover\:text-brown-800:hover { color: #5D4037; } /* Tambahan Hover */
-
-/* Cokelat Sedang (Untuk Tombol/Link) */
-.text-brown-600 { color: #8D6E63; }
-.bg-brown-600 { background-color: #8D6E63; }
-.border-brown-600 { border-color: #8D6E63; }
-.hover\:bg-brown-600:hover { background-color: #8D6E63; } /* Tambahan Hover */
-
-/* Cokelat Muda (Untuk Hover/Accent) */
-.text-brown-400 { color: #BCAAA4; }
-.bg-brown-400 { background-color: #BCAAA4; }
-
-/* Krem (Background Nuansa Kertas) */
-.bg-brown-50 { background-color: #EFEBE9; }
-.bg-brown-100 { background-color: #D7CCC8; }
-.bg-brown-200 { background-color: #BCAAA4; }
-
-/* Abu-Abu Netral untuk Dark Mode */
-.text-gray-800 { color: #2D3748; }
-.bg-gray-800 { background-color: #2D3748; }
-.text-gray-100 { color: #F7FAFC; }
-.bg-gray-100 { background-color: #F7FAFC; }
-
-/* ==========================================================================
-   3. DARK MODE OVERRIDES (DIKEMBANGKAN)
-   ========================================================================== */
-.dark body {
-    background-color: #1A202C; /* Abu-abu gelap */
-    color: #E2E8F0; /* Abu-abu terang, lebih lembut dari putih murni */
-}
-
-.dark h1, .dark h2, .dark h3, .dark h4, .dark h5, .dark h6 {
-    color: #F7FAFC;
-}
-
-.dark .bg-white {
-    background-color: #2D3748; /* Card background di dark mode */
-}
-
-.dark .border-gray-200 {
-    border-color: #4A5568;
-}
-
-/* ==========================================================================
-   4. STYLING LINK & KONTEN ARTIKEL (DIKEMBANGKAN)
-   ========================================================================== */
-
-/* Link Navbar */
-.nav-link {
-    color: #FFFFFF;
-    transition: all 0.3s ease;
-    position: relative;
-}
-.nav-link:hover {
-    color: #FFE082; /* Kuning pastel */
-}
-/* Efek garis bawah animasi pada navbar */
-.nav-link::after {
-    content: '';
-    position: absolute;
-    width: 0;
-    height: 2px;
-    bottom: -2px;
-    left: 0;
-    background-color: #FFE082;
-    transition: width 0.3s ease;
-}
-.nav-link:hover::after {
-    width: 100%;
-}
-
-/* Styling Konten Artikel (Prose) - Agar tulisan blog rapi */
-article a {
-    color: #8D6E63;
-    text-decoration: underline;
-    text-decoration-thickness: 2px;
-    text-underline-offset: 2px;
-    transition: color 0.2s ease, background-color 0.2s ease;
-}
-article a:hover {
-    color: #5D4037;
-    background-color: #EFEBE9;
-    border-radius: 2px;
-}
-.dark article a { color: #F6E05E; }
-.dark article a:hover { color: #FAF089; background-color: transparent; }
-
-/* Blockquote (Kutipan) */
-article blockquote {
-    border-left: 4px solid #8D6E63;
-    padding-left: 1rem;
-    font-style: italic;
-    color: #5D4037;
-    background-color: rgba(141, 110, 99, 0.1);
-    padding: 1rem;
-    border-radius: 0 0.5rem 0.5rem 0;
-    margin: 1.5rem 0;
-}
-.dark article blockquote {
-    border-left-color: #F6E05E;
-    color: #E2E8F0;
-    background-color: rgba(255, 255, 255, 0.05);
-}
-
-/* Lists (Daftar) */
-article ul { list-style-type: disc; margin-left: 1.5rem; margin-bottom: 1rem; }
-article ol { list-style-type: decimal; margin-left: 1.5rem; margin-bottom: 1rem; }
-article li { margin-bottom: 0.5rem; }
-
-/* ==========================================================================
-   5. KOMPONEN UI (BUTTONS & FORMS - BARU)
-   ========================================================================== */
-@layer components {
-    /* Tombol Utama */
-    .btn-primary {
-        @apply bg-[#8D6E63] text-white px-4 py-2 rounded-md font-medium transition duration-300 shadow-sm hover:bg-[#6D4C41] hover:shadow-md active:transform active:scale-95;
+      article blockquote {
+        @apply border-l-4 border-brown-400 pl-4 py-2 my-6 italic text-brown-800 bg-brown-50/50 rounded-r-lg;
+      }
+      .dark article blockquote {
+        @apply border-yellow-500 text-gray-200 bg-gray-800;
+      }
+      
+      article ul { @apply list-disc ml-6 mb-4; }
+      article ol { @apply list-decimal ml-6 mb-4; }
+      article li { @apply mb-2; }
     }
 
-    /* Input Fields (Search/Login) */
-    .input-field {
-        @apply w-full px-4 py-2 rounded-md border border-gray-300 bg-white text-gray-800 focus:outline-none focus:ring-2 focus:ring-[#8D6E63] focus:border-transparent transition-all duration-300;
+    @layer components {
+      /* Tombol */
+      .btn-primary {
+        @apply bg-brown-600 text-white px-4 py-2 rounded-md font-medium transition shadow-sm hover:bg-brown-800 hover:shadow-md;
+      }
+      
+      /* Input Field */
+      .input-field {
+        @apply w-full px-4 py-2 rounded-md border border-gray-300 focus:ring-2 focus:ring-brown-400 focus:outline-none transition;
+      }
+      .dark .input-field {
+        @apply bg-gray-700 border-gray-600 text-white focus:ring-yellow-400;
+      }
+
+      /* Navbar Shrink Effect Class */
+      .navbar-shrink {
+        @apply py-2 bg-brown-600/95 backdrop-blur-md shadow-lg !important;
+      }
+      .dark .navbar-shrink {
+        @apply bg-gray-800/95 !important;
+      }
     }
-    .dark .input-field {
-        @apply bg-gray-700 border-gray-600 text-gray-100 focus:ring-yellow-400;
+
+    @layer utilities {
+      /* Custom Scrollbar */
+      ::-webkit-scrollbar { width: 8px; }
+      ::-webkit-scrollbar-track { @apply bg-gray-100; }
+      ::-webkit-scrollbar-thumb { @apply bg-brown-200 rounded-full; }
+      ::-webkit-scrollbar-thumb:hover { @apply bg-brown-400; }
+      .dark ::-webkit-scrollbar-track { @apply bg-gray-800; }
+      .dark ::-webkit-scrollbar-thumb { @apply bg-gray-600; }
     }
-}
+  </style>
 
-/* ==========================================================================
-   6. CUSTOM SCROLLBAR (BARU)
-   ========================================================================== */
-/* Webkit Browsers (Chrome, Safari, Edge) */
-::-webkit-scrollbar {
-    width: 8px;
-}
-::-webkit-scrollbar-track {
-    background: #F1F1F1;
-}
-::-webkit-scrollbar-thumb {
-    background: #BCAAA4; /* Cokelat Muda */
-    border-radius: 4px;
-}
-::-webkit-scrollbar-thumb:hover {
-    background: #8D6E63; /* Cokelat Sedang */
-}
-.dark ::-webkit-scrollbar-track {
-    background: #2D3748;
-}
-.dark ::-webkit-scrollbar-thumb {
-    background: #4A5568;
-}
+  <script>
+    if (localStorage.getItem('color-theme') === 'dark' || (!('color-theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+        document.documentElement.classList.add('dark');
+    } else {
+        document.documentElement.classList.remove('dark');
+    }
+  </script>
+</head>
 
-/* ==========================================================================
-   7. ANIMASI DAN EFEK (DIPERTAHANKAN & DITAMBAH)
-   ========================================================================== */
+<body class="flex flex-col min-h-screen" id="body">
 
-/* Fade In */
-@keyframes fadeIn {
-    from { opacity: 0; }
-    to { opacity: 1; }
-}
-.animate-fade-in {
-    animation: fadeIn 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-}
+  {% include navbar.html %}
 
-/* Slide In Left (Mobile Menu) */
-@keyframes slideInLeft {
-    from { transform: translateX(-100%); opacity: 0; }
-    to { transform: translateX(0); opacity: 1; }
-}
-.animate-slide-in-left {
-    animation: slideInLeft 0.3s ease-out;
-}
+  <main class="container mx-auto px-6 py-10 max-w-4xl flex-grow animate__animated animate__fadeIn">
+    {{ content }}
+  </main>
 
-/* Slide Down (Untuk Dropdown & Search) - BARU */
-@keyframes slideDown {
-    from { transform: translateY(-10px); opacity: 0; }
-    to { transform: translateY(0); opacity: 1; }
-}
-.animate-slide-down {
-    animation: slideDown 0.3s ease-out forwards;
-}
+  <footer class="bg-[#EBEBE0] dark:bg-gray-800 text-center py-12 mt-auto border-t border-[#D6D6C2] dark:border-gray-700 transition-colors duration-300">
+    <div class="container mx-auto px-4">
+      <h4 class="font-serif text-[#5D4037] dark:text-gray-200 font-bold text-2xl mb-2 tracking-wide">Suhaa.id</h4>
+      <p class="text-sm text-gray-500 dark:text-gray-400 mb-6 italic">Menulis untuk merawat kewarasan.</p>
+      
+      <div class="flex justify-center space-x-4">
+        <a href="#" class="text-gray-400 hover:text-brown-600 dark:hover:text-yellow-400 transition"><i class="fab fa-instagram text-xl"></i></a>
+        <a href="#" class="text-gray-400 hover:text-brown-600 dark:hover:text-yellow-400 transition"><i class="fab fa-twitter text-xl"></i></a>
+      </div>
+    </div>
+  </footer>
 
-/* Rotate In (Untuk Dark Mode Toggle) - BARU */
-@keyframes rotateIn {
-    from { transform: rotate(-90deg); opacity: 0; }
-    to { transform: rotate(0deg); opacity: 1; }
-}
-.animate-rotate-in {
-    animation: rotateIn 0.4s ease-out;
-}
-
-/* Bounce Custom */
-@keyframes bounce {
-    0%, 20%, 50%, 80%, 100% { transform: translateY(0); }
-    40% { transform: translateY(-8px); }
-    60% { transform: translateY(-4px); }
-}
-.animate-bounce-custom {
-    animation: bounce 2s infinite;
-}
-
-/* Pulse Custom */
-@keyframes pulse {
-    0% { transform: scale(1); box-shadow: 0 0 0 0 rgba(239, 68, 68, 0.7); }
-    70% { transform: scale(1); box-shadow: 0 0 0 6px rgba(239, 68, 68, 0); }
-    100% { transform: scale(1); box-shadow: 0 0 0 0 rgba(239, 68, 68, 0); }
-}
-.animate-pulse-custom {
-    animation: pulse 2s infinite;
-}
-
-/* Zoom In Dropdown */
-@keyframes zoomIn {
-    from { transform: scale(0.95); opacity: 0; }
-    to { transform: scale(1); opacity: 1; }
-}
-.animate-zoom-in {
-    animation: zoomIn 0.2s ease-out forwards;
-}
-
-/* ==========================================================================
-   8. STYLING NAVBAR KHUSUS (DIPERTAHANKAN & DIHALUSKAN)
-   ========================================================================== */
-
-/* Navbar Shrink Effect Logic */
-#navbar {
-    transition: padding 0.3s ease, background-color 0.3s ease, box-shadow 0.3s ease;
-}
-
-.navbar-shrink {
-    padding-top: 0.75rem !important; /* py-3 */
-    padding-bottom: 0.75rem !important;
-    background-color: rgba(141, 110, 99, 0.95) !important; /* Sedikit transparan saat scroll */
-    backdrop-filter: blur(10px); /* Efek blur di belakang navbar */
-}
-.dark .navbar-shrink {
-    background-color: rgba(31, 41, 55, 0.95) !important;
-}
-
-/* Transisi Logo saat Scroll */
-#logo {
-    transition: font-size 0.3s ease, color 0.3s ease;
-}
-
-/* Badge Notifikasi */
-#notif-badge {
-    transition: transform 0.2s ease;
-}
-#notif-button:hover #notif-badge {
-    transform: scale(1.1);
-}
+</body>
+</html>
