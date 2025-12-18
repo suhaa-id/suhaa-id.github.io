@@ -33,4 +33,39 @@ article a {
 }
 article a:hover {
     color: #5D4037;
+}@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* =================================
+   PALET WARNA KHUSUS SUHAA.ID
+   ================================= */
+
+/* Cokelat Tua (Untuk Judul) */
+.text-brown-800 { color: #5D4037; }
+
+/* Cokelat Sedang (Untuk Tombol/Link) */
+.text-brown-600 { color: #8D6E63; }
+
+/* Krem (Background) */
+.bg-brown-50 { background-color: #EFEBE9; }
+.bg-brown-100 { background-color: #D7CCC8; }
+
+/* PENGATURAN FONT */
+h1, h2, h3, h4, h5, h6 {
+    font-family: 'Merriweather', serif;
+}
+
+body {
+    font-family: 'Inter', sans-serif;
+    background-color: #F9F9F7; /* Warna kertas lama */
+}
+
+/* Biar link dalam artikel berwarna cokelat */
+article a {
+    color: #8D6E63;
+    text-decoration: underline;
+}
+article a:hover {
+    color: #5D4037;
 }
