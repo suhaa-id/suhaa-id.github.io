@@ -1,78 +1,36 @@
-/* RESET SEDERHANA */
-* { box-sizing: border-box; margin: 0; padding: 0; }
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* =================================
+   PALET WARNA KHUSUS SUHAA.ID
+   ================================= */
+
+/* Cokelat Tua (Untuk Judul) */
+.text-brown-800 { color: #5D4037; }
+
+/* Cokelat Sedang (Untuk Tombol/Link) */
+.text-brown-600 { color: #8D6E63; }
+
+/* Krem (Background) */
+.bg-brown-50 { background-color: #EFEBE9; }
+.bg-brown-100 { background-color: #D7CCC8; }
+
+/* PENGATURAN FONT */
+h1, h2, h3, h4, h5, h6 {
+    font-family: 'Merriweather', serif;
+}
 
 body {
-    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
-    background-color: #ffffff;
-    color: #111;
-    line-height: 1.6;
-    margin: 0;
+    font-family: 'Inter', sans-serif;
+    background-color: #F9F9F7; /* Warna kertas lama */
 }
 
-/* CONTAINER (Wadah Tengah) */
-.container {
-    max-width: 800px;
-    margin: 0 auto;
-    padding: 0 20px;
-}
-
-/* HEADER / MENU */
-nav {
-    border-bottom: 1px solid #eaeaea;
-    padding: 20px 0;
-    margin-bottom: 40px;
-}
-nav .container {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-}
-nav a.logo {
-    font-weight: 700;
-    font-size: 1.2rem;
-    text-decoration: none;
-    color: #000;
-}
-nav ul {
-    list-style: none;
-    display: flex;
-    gap: 20px;
-}
-nav ul li a {
-    text-decoration: none;
-    color: #666;
-    font-size: 0.9rem;
-}
-nav ul li a:hover {
-    color: #000;
-}
-
-/* JUDUL & KONTEN */
-h1, h2, h3 { color: #000; margin-bottom: 15px; }
-h1 { font-size: 2.5rem; letter-spacing: -1px; }
-
-p { margin-bottom: 20px; color: #333; }
-
-/* DAFTAR TULISAN */
-article {
-    border-bottom: 1px solid #f0f0f0;
-    padding-bottom: 30px;
-    margin-bottom: 30px;
-}
-article h3 a {
-    text-decoration: none;
-    color: #000;
-}
-article h3 a:hover {
+/* Biar link dalam artikel berwarna cokelat */
+article a {
+    color: #8D6E63;
     text-decoration: underline;
 }
-
-/* FOOTER */
-footer {
-    text-align: center;
-    padding: 40px 0;
-    color: #999;
-    font-size: 0.8rem;
-    border-top: 1px solid #eaeaea;
-    margin-top: 50px;
+article a:hover {
+    color: #5D4037;
 }
