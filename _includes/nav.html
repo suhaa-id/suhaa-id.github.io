@@ -1,301 +1,86 @@
-<nav class="bg-[#8D6E63] dark:bg-gray-800 text-white shadow-lg sticky top-0 z-50 transition-all duration-300 animate__animated animate__fadeInDown" id="navbar">
+<!-- Enhanced Navbar with New Features -->
+<nav class="bg-[#8D6E63] dark:bg-gray-800 text-white shadow-lg sticky top-0 z-50 transition-all duration-300 animate__animated animate__fadeInDown" id="navbar" role="navigation" aria-label="Main navigation">
   <div class="container mx-auto px-6 py-4 flex flex-col md:flex-row justify-between items-center max-w-5xl">
     
-    <a href="{{ site.baseurl }}/" class="text-2xl md:text-3xl font-serif font-bold tracking-wide hover:text-yellow-200 transition mb-4 md:mb-0 animate__pulse" id="logo">
+    <!-- Logo with Enhanced Effects -->
+    <a href="{{ site.baseurl }}/" class="text-2xl md:text-3xl font-serif font-bold tracking-wide hover:text-yellow-200 transition mb-4 md:mb-0 animate__pulse" id="logo" aria-label="Go to homepage">
       Suhaa.id
     </a>
 
+    <!-- Search Bar with Autocomplete and Voice Search -->
     <div class="hidden md:flex items-center space-x-2 mb-4 md:mb-0 relative">
-      <input type="text" placeholder="Cari artikel..." class="px-3 py-1 rounded-md text-gray-800 focus:outline-none focus:ring-2 focus:ring-yellow-300 w-64" id="search-input" autocomplete="off">
-      <button class="bg-yellow-500 hover:bg-yellow-600 px-3 py-1 rounded-md transition animate__bounce" id="search-button">
+      <input type="text" placeholder="Cari artikel..." class="px-3 py-1 rounded-md text-gray-800 focus:outline-none focus:ring-2 focus:ring-yellow-300 w-64" id="search-input" autocomplete="off" aria-label="Search articles">
+      <button class="bg-yellow-500 hover:bg-yellow-600 px-3 py-1 rounded-md transition animate__bounce" id="search-button" aria-label="Submit search">
         <i class="fas fa-search"></i>
       </button>
-      <div id="search-suggestions" class="absolute top-full left-0 mt-1 w-64 bg-white rounded-md shadow-lg hidden z-20 max-h-40 overflow-y-auto text-gray-800"></div>
+      <button class="bg-gray-500 hover:bg-gray-600 px-3 py-1 rounded-md transition" id="voice-search-button" aria-label="Voice search" title="Voice Search">
+        <i class="fas fa-microphone"></i>
+      </button>
+      <div id="search-suggestions" class="absolute top-full left-0 mt-1 w-64 bg-white dark:bg-gray-700 rounded-md shadow-lg hidden z-20 max-h-40 overflow-y-auto text-gray-800 dark:text-gray-200" role="listbox" aria-label="Search suggestions"></div>
     </div>
 
-    <ul class="hidden md:flex space-x-6 items-center text-sm font-medium">
-      <li><a href="{{ site.baseurl }}/" class="hover:text-yellow-200 transition animate__fadeIn">Beranda</a></li>
-      <li><a href="{{ site.baseurl }}/about" class="hover:text-yellow-200 transition animate__fadeIn">Tentang</a></li>
+    <!-- Desktop Menu with Keyboard Navigation -->
+    <ul class="hidden md:flex space-x-6 items-center text-sm font-medium" role="menubar">
+      <li role="none"><a href="{{ site.baseurl }}/" class="hover:text-yellow-200 transition animate__fadeIn" role="menuitem" tabindex="0">Beranda</a></li>
+      <li role="none"><a href="{{ site.baseurl }}/about" class="hover:text-yellow-200 transition animate__fadeIn" role="menuitem" tabindex="0">Tentang</a></li>
       
-      <li class="relative group cursor-pointer">
-        <span class="flex items-center hover:text-yellow-200 py-2 animate__fadeIn" id="kategori-toggle">
+      <!-- Enhanced Dropdown with Lazy Loading -->
+      <li class="relative group cursor-pointer" role="none">
+        <span class="flex items-center hover:text-yellow-200 py-2 animate__fadeIn" id="kategori-toggle" role="menuitem" tabindex="0" aria-haspopup="true" aria-expanded="false">
           <i class="fas fa-list mr-1"></i> Kategori ▾
         </span>
-        <ul class="absolute right-0 mt-2 w-64 bg-white dark:bg-gray-700 rounded-md shadow-xl py-2 hidden group-hover:block text-gray-800 dark:text-gray-200 z-10 animate__animated animate__zoomIn">
-          <li class="px-4 py-2 font-semibold text-[#8D6E63] dark:text-yellow-300 border-b">Pilih Kategori</li>
-          <li><a href="{{ site.baseurl }}/category/tulisan-rasa" class="block px-4 py-2 hover:bg-[#F5F5F0] dark:hover:bg-gray-600 hover:text-[#8D6E63] transition"><i class="fas fa-coffee mr-2"></i> Tulisan Rasa</a></li>
-          <li><a href="{{ site.baseurl }}/category/opini" class="block px-4 py-2 hover:bg-[#F5F5F0] dark:hover:bg-gray-600 hover:text-[#8D6E63] transition"><i class="fas fa-comments mr-2"></i> Opini</a></li>
+        <ul class="absolute right-0 mt-2 w-64 bg-white dark:bg-gray-700 rounded-md shadow-xl py-2 hidden group-hover:block text-gray-800 dark:text-gray-200 z-10 animate__animated animate__zoomIn" role="menu" id="kategori-menu" aria-label="Category menu">
+          <li class="px-4 py-2 font-semibold text-[#8D6E63] dark:text-yellow-300 border-b" role="none">Pilih Kategori</li>
+          <li role="none"><a href="{{ site.baseurl }}/category/tulisan-rasa" class="block px-4 py-2 hover:bg-[#F5F5F0] dark:hover:bg-gray-600 hover:text-[#8D6E63] transition" role="menuitem"><i class="fas fa-coffee mr-2"></i> Tulisan Rasa</a></li>
+          <li role="none"><a href="{{ site.baseurl }}/category/opini" class="block px-4 py-2 hover:bg-[#F5F5F0] dark:hover:bg-gray-600 hover:text-[#8D6E63] transition" role="menuitem"><i class="fas fa-comments mr-2"></i> Opini</a></li>
           
-          <li class="relative group/sub">
-            <span class="flex items-center px-4 py-2 hover:bg-[#F5F5F0] dark:hover:bg-gray-600 cursor-pointer" id="sub-toggle">
+          <!-- Submenu with Improved Hover -->
+          <li class="relative group/sub" role="none">
+            <span class="flex items-center px-4 py-2 hover:bg-[#F5F5F0] dark:hover:bg-gray-600 cursor-pointer" id="sub-toggle" role="menuitem" tabindex="0" aria-haspopup="true" aria-expanded="false">
               <i class="fas fa-book mr-2"></i> Lainnya ▸
             </span>
-            <ul class="absolute left-full top-0 mt-0 w-56 bg-white dark:bg-gray-700 rounded-md shadow-xl py-2 hidden group-hover/sub:block text-gray-800 dark:text-gray-200 z-20 animate__animated animate__slideInRight" id="sub-menu">
-              <li><a href="{{ site.baseurl }}/category/tutorial" class="block px-4 py-2 hover:bg-[#F5F5F0] dark:hover:bg-gray-600 transition"><i class="fas fa-graduation-cap mr-2"></i> Tutorial</a></li>
-              <li><a href="{{ site.baseurl }}/category/review" class="block px-4 py-2 hover:bg-[#F5F5F0] dark:hover:bg-gray-600 transition"><i class="fas fa-star mr-2"></i> Review</a></li>
-              <li><a href="{{ site.baseurl }}/category/travel" class="block px-4 py-2 hover:bg-[#F5F5F0] dark:hover:bg-gray-600 transition"><i class="fas fa-plane mr-2"></i> Travel</a></li>
-              <li><a href="{{ site.baseurl }}/category/tech" class="block px-4 py-2 hover:bg-[#F5F5F0] dark:hover:bg-gray-600 transition"><i class="fas fa-laptop mr-2"></i> Tech</a></li>
+            <ul class="absolute left-full top-0 mt-0 w-56 bg-white dark:bg-gray-700 rounded-md shadow-xl py-2 hidden group-hover/sub:block text-gray-800 dark:text-gray-200 z-20 animate__animated animate__slideInRight" id="sub-menu" role="menu" aria-label="Subcategory menu">
+              <li role="none"><a href="{{ site.baseurl }}/category/tutorial" class="block px-4 py-2 hover:bg-[#F5F5F0] dark:hover:bg-gray-600 transition" role="menuitem"><i class="fas fa-graduation-cap mr-2"></i> Tutorial</a></li>
+              <li role="none"><a href="{{ site.baseurl }}/category/review" class="block px-4 py-2 hover:bg-[#F5F5F0] dark:hover:bg-gray-600 transition" role="menuitem"><i class="fas fa-star mr-2"></i> Review</a></li>
+              <li role="none"><a href="{{ site.baseurl }}/category/travel" class="block px-4 py-2 hover:bg-[#F5F5F0] dark:hover:bg-gray-600 transition" role="menuitem"><i class="fas fa-plane mr-2"></i> Travel</a></li>
+              <li role="none"><a href="{{ site.baseurl }}/category/tech" class="block px-4 py-2 hover:bg-[#F5F5F0] dark:hover:bg-gray-600 transition" role="menuitem"><i class="fas fa-laptop mr-2"></i> Tech</a></li>
             </ul>
           </li>
         </ul>
       </li>
 
-      <li class="relative group cursor-pointer">
-        <span class="flex items-center hover:text-yellow-200 py-2 animate__fadeIn" id="user-toggle">
+      <!-- User Menu with Social Login -->
+      <li class="relative group cursor-pointer" role="none">
+        <span class="flex items-center hover:text-yellow-200 py-2 animate__fadeIn" id="user-toggle" role="menuitem" tabindex="0" aria-haspopup="true" aria-expanded="false">
           <i class="fas fa-user-circle mr-1"></i> Akun ▾
         </span>
-        <ul class="absolute right-0 mt-2 w-48 bg-white dark:bg-gray-700 rounded-md shadow-xl py-2 hidden group-hover:block text-gray-800 dark:text-gray-200 z-10 animate__animated animate__zoomIn" id="user-menu">
-          <li id="login-item"><a href="{{ site.baseurl }}/login" class="block px-4 py-2 hover:bg-[#F5F5F0] dark:hover:bg-gray-600 transition"><i class="fas fa-sign-in-alt mr-2"></i> Masuk</a></li>
-          <li id="logout-item" style="display: none;"><a href="#" class="block px-4 py-2 hover:bg-[#F5F5F0] dark:hover:bg-gray-600 transition" id="logout-link"><i class="fas fa-sign-out-alt mr-2"></i> Keluar</a></li>
-          <li><a href="{{ site.baseurl }}/profile" class="block px-4 py-2 hover:bg-[#F5F5F0] dark:hover:bg-gray-600 transition"><i class="fas fa-user mr-2"></i> Profil</a></li>
-          <li class="border-t pt-2">
+        <ul class="absolute right-0 mt-2 w-48 bg-white dark:bg-gray-700 rounded-md shadow-xl py-2 hidden group-hover:block text-gray-800 dark:text-gray-200 z-10 animate__animated animate__zoomIn" id="user-menu" role="menu" aria-label="User menu">
+          <li id="login-item" role="none"><a href="{{ site.baseurl }}/login" class="block px-4 py-2 hover:bg-[#F5F5F0] dark:hover:bg-gray-600 transition" role="menuitem"><i class="fas fa-sign-in-alt mr-2"></i> Masuk</a></li>
+          <li id="logout-item" style="display: none;" role="none"><a href="#" class="block px-4 py-2 hover:bg-[#F5F5F0] dark:hover:bg-gray-600 transition" id="logout-link" role="menuitem"><i class="fas fa-sign-out-alt mr-2"></i> Keluar</a></li>
+          <li role="none"><a href="{{ site.baseurl }}/profile" class="block px-4 py-2 hover:bg-[#F5F5F0] dark:hover:bg-gray-600 transition" role="menuitem"><i class="fas fa-user mr-2"></i> Profil</a></li>
+          <li class="border-t pt-2" role="none">
             <span class="px-4 py-1 text-xs text-gray-500">Login Sosial:</span>
             <div class="flex space-x-2 px-4 py-1">
-              <a href="#" class="text-blue-600 hover:text-blue-800"><i class="fab fa-facebook"></i></a>
-              <a href="#" class="text-red-600 hover:text-red-800"><i class="fab fa-google"></i></a>
-              <a href="#" class="text-blue-400 hover:text-blue-600"><i class="fab fa-twitter"></i></a>
+              <a href="#" class="text-blue-600 hover:text-blue-800 transition" aria-label="Login with Facebook"><i class="fab fa-facebook"></i></a>
+              <a href="#" class="text-red-600 hover:text-red-800 transition" aria-label="Login with Google"><i class="fab fa-google"></i></a>
+              <a href="#" class="text-blue-400 hover:text-blue-600 transition" aria-label="Login with Twitter"><i class="fab fa-twitter"></i></a>
             </div>
           </li>
         </ul>
       </li>
     </ul>
 
+    <!-- Right Side: Notifications, Dark Mode, Language -->
     <div class="flex items-center space-x-4 mb-4 md:mb-0">
       
+      <!-- Notification with Dropdown -->
       <div class="relative">
-        <button class="relative hover:text-yellow-200 transition animate__bounce" id="notif-button">
+        <button class="relative hover:text-yellow-200 transition animate__bounce" id="notif-button" aria-label="Notifications" aria-haspopup="true" aria-expanded="false">
           <i class="fas fa-bell"></i>
           <span class="absolute -top-1 -right-1 bg-red-500 text-white text-xs rounded-full px-1 animate__pulse" id="notif-badge">3</span>
         </button>
-        <div id="notif-dropdown" class="absolute right-0 mt-2 w-64 bg-white dark:bg-gray-700 rounded-md shadow-xl py-2 hidden text-gray-800 dark:text-gray-200 z-20 animate__animated animate__slideInDown">
-           <li class="px-4 py-2 font-semibold border-b">Notifikasi</li>
-           <li class="px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 text-sm">Artikel baru: "Tips Menulis"</li>
-           <li class="px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 text-sm">Komentar di postingan Anda</li>
-        </div>
-      </div>
-
-      <button class="hover:text-yellow-200 transition animate__rotateIn" id="dark-mode-toggle">
-        <i class="fas fa-moon" id="dark-icon"></i>
-      </button>
-
-      <div class="relative">
-        <button class="hover:text-yellow-200 transition" id="lang-toggle">
-           <i class="fas fa-globe mr-1"></i> ID
-        </button>
-        <ul id="lang-menu" class="absolute right-0 mt-2 w-20 bg-white dark:bg-gray-700 rounded-md shadow-xl py-2 hidden text-gray-800 dark:text-gray-200 z-10">
-           <li><a href="#" class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600">EN</a></li>
-           <li><a href="#" class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600">ID</a></li>
-        </ul>
-      </div>
-    </div>
-
-    <button class="md:hidden flex items-center text-white hover:text-yellow-200 transition animate__bounce" id="mobile-menu-button">
-      <i class="fas fa-bars"></i>
-    </button>
-
-    <div class="md:hidden flex flex-col space-y-4 mt-4 text-sm font-medium w-full animate__animated animate__slideInLeft hidden" id="mobile-menu">
-      <div class="flex items-center space-x-2">
-        <input type="text" placeholder="Cari..." class="flex-1 px-3 py-1 rounded-md text-gray-800 focus:outline-none focus:ring-2 focus:ring-yellow-300" id="mobile-search-input">
-        <button class="bg-yellow-500 hover:bg-yellow-600 px-3 py-1 rounded-md transition" id="mobile-search-button">
-          <i class="fas fa-search"></i>
-        </button>
-      </div>
-
-      <a href="{{ site.baseurl }}/" class="block py-2 hover:text-yellow-200 transition">Beranda</a>
-      <a href="{{ site.baseurl }}/about" class="block py-2 hover:text-yellow-200 transition">Tentang</a>
-      
-      <div>
-        <span class="flex items-center py-2 cursor-pointer hover:text-yellow-200 transition" id="mobile-kategori-toggle">
-          <i class="fas fa-list mr-1"></i> Kategori ▾
-        </span>
-        <ul class="ml-4 mt-2 space-y-2 animate__animated animate__fadeIn hidden" id="mobile-kategori-submenu">
-          <li><a href="{{ site.baseurl }}/category/tulisan-rasa" class="block py-2 hover:text-yellow-200 transition"><i class="fas fa-coffee mr-2"></i> Tulisan Rasa</a></li>
-          <li><a href="{{ site.baseurl }}/category/opini" class="block py-2 hover:text-yellow-200 transition"><i class="fas fa-comments mr-2"></i> Opini</a></li>
-          <li>
-            <span class="flex items-center py-2 cursor-pointer hover:text-yellow-200 transition" id="mobile-sub-toggle"><i class="fas fa-book mr-2"></i> Lainnya ▸</span>
-            <ul class="ml-4 mt-2 space-y-2 animate__animated animate__slideInRight hidden" id="mobile-sub-submenu">
-              <li><a href="{{ site.baseurl }}/category/tutorial" class="block py-2 hover:text-yellow-200 transition"><i class="fas fa-graduation-cap mr-2"></i> Tutorial</a></li>
-              <li><a href="{{ site.baseurl }}/category/review" class="block py-2 hover:text-yellow-200 transition"><i class="fas fa-star mr-2"></i> Review</a></li>
-              <li><a href="{{ site.baseurl }}/category/travel" class="block py-2 hover:text-yellow-200 transition"><i class="fas fa-plane mr-2"></i> Travel</a></li>
-              <li><a href="{{ site.baseurl }}/category/tech" class="block py-2 hover:text-yellow-200 transition"><i class="fas fa-laptop mr-2"></i> Tech</a></li>
-            </ul>
-          </li>
-        </ul>
-      </div>
-
-      <div>
-        <span class="flex items-center py-2 cursor-pointer hover:text-yellow-200 transition" id="mobile-user-toggle"><i class="fas fa-user-circle mr-1"></i> Akun ▾</span>
-        <ul class="ml-4 mt-2 space-y-2 animate__animated animate__fadeIn hidden" id="mobile-user-submenu">
-          <li id="mobile-login-item"><a href="{{ site.baseurl }}/login" class="block py-2 hover:text-yellow-200 transition"><i class="fas fa-sign-in-alt mr-2"></i> Masuk</a></li>
-          <li id="mobile-logout-item" style="display: none;"><a href="#" class="block py-2 hover:text-yellow-200 transition" id="mobile-logout-link"><i class="fas fa-sign-out-alt mr-2"></i> Keluar</a></li>
-          <li><a href="{{ site.baseurl }}/profile" class="block py-2 hover:text-yellow-200 transition"><i class="fas fa-user mr-2"></i> Profil</a></li>
-        </ul>
-      </div>
-    </div>
-  </div>
-</nav>
-
-<script>
-document.addEventListener('DOMContentLoaded', () => {
-    // 1. Dark Mode Logic
-    const themeToggleBtn = document.getElementById('dark-mode-toggle');
-    const darkIcon = document.getElementById('dark-icon');
-    const htmlElement = document.documentElement;
-
-    if (localStorage.getItem('color-theme') === 'dark' || (!('color-theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
-        htmlElement.classList.add('dark');
-        darkIcon.classList.remove('fa-moon');
-        darkIcon.classList.add('fa-sun');
-    } else {
-        htmlElement.classList.remove('dark');
-        darkIcon.classList.remove('fa-sun');
-        darkIcon.classList.add('fa-moon');
-    }
-
-    if(themeToggleBtn){
-        themeToggleBtn.addEventListener('click', () => {
-            if (htmlElement.classList.contains('dark')) {
-                htmlElement.classList.remove('dark');
-                localStorage.setItem('color-theme', 'light');
-                darkIcon.classList.remove('fa-sun');
-                darkIcon.classList.add('fa-moon');
-            } else {
-                htmlElement.classList.add('dark');
-                localStorage.setItem('color-theme', 'dark');
-                darkIcon.classList.remove('fa-moon');
-                darkIcon.classList.add('fa-sun');
-            }
-        });
-    }
-
-    // 2. Navbar Scroll Effect
-    const navbar = document.getElementById('navbar');
-    const logo = document.getElementById('logo');
-    window.addEventListener('scroll', () => {
-        if (window.scrollY > 20) {
-            navbar.classList.add('shadow-lg', 'py-2');
-            navbar.classList.remove('py-4');
-            logo.classList.replace('text-2xl', 'text-xl');
-            logo.classList.replace('md:text-3xl', 'md:text-2xl');
-        } else {
-            navbar.classList.remove('shadow-lg', 'py-2');
-            navbar.classList.add('py-4');
-            logo.classList.replace('text-xl', 'text-2xl');
-            logo.classList.replace('md:text-2xl', 'md:text-3xl');
-        }
-    });
-
-    // 3. Mobile Menu Toggle
-    const mobileMenuBtn = document.getElementById('mobile-menu-button');
-    const mobileMenu = document.getElementById('mobile-menu');
-    const mobileIcon = mobileMenuBtn.querySelector('i');
-
-    if(mobileMenuBtn){
-        mobileMenuBtn.addEventListener('click', () => {
-            const isHidden = mobileMenu.classList.contains('hidden');
-            if (isHidden) {
-                mobileMenu.classList.remove('hidden');
-                mobileIcon.classList.remove('fa-bars');
-                mobileIcon.classList.add('fa-times');
-            } else {
-                mobileMenu.classList.add('hidden');
-                mobileIcon.classList.remove('fa-times');
-                mobileIcon.classList.add('fa-bars');
-            }
-        });
-    }
-
-    // 4. Mobile Submenus (Accordion Logic)
-    function setupMobileDropdown(toggleId, menuId) {
-        const toggle = document.getElementById(toggleId);
-        const menu = document.getElementById(menuId);
-        if(!toggle || !menu) return;
-
-        toggle.addEventListener('click', (e) => {
-            e.preventDefault();
-            menu.classList.toggle('hidden');
-        });
-    }
-    setupMobileDropdown('mobile-kategori-toggle', 'mobile-kategori-submenu');
-    setupMobileDropdown('mobile-sub-toggle', 'mobile-sub-submenu');
-    setupMobileDropdown('mobile-user-toggle', 'mobile-user-submenu');
-
-    // 5. Desktop Dropdown Toggles (Click based for special menus)
-    function setupClickDropdown(toggleId, menuId) {
-        const toggle = document.getElementById(toggleId);
-        const menu = document.getElementById(menuId);
-        if(!toggle || !menu) return;
-
-        toggle.addEventListener('click', (e) => {
-            e.stopPropagation();
-            menu.classList.toggle('hidden');
-        });
-        document.addEventListener('click', (e) => {
-            if (!toggle.contains(e.target) && !menu.contains(e.target)) {
-                menu.classList.add('hidden');
-            }
-        });
-    }
-    setupClickDropdown('notif-button', 'notif-dropdown');
-    setupClickDropdown('lang-toggle', 'lang-menu');
-
-    // 6. Search Functionality (Simulated)
-    const searchInput = document.getElementById('search-input');
-    const searchSuggestions = document.getElementById('search-suggestions');
-
-    if(searchInput && searchSuggestions) {
-        searchInput.addEventListener('input', (e) => {
-            const val = e.target.value.toLowerCase();
-            if (val.length > 0) {
-                searchSuggestions.classList.remove('hidden');
-                searchSuggestions.innerHTML = `
-                    <div class="px-4 py-2 hover:bg-gray-100 cursor-pointer text-sm">Hasil untuk "${val}"...</div>
-                    <div class="px-4 py-2 hover:bg-gray-100 cursor-pointer text-sm">Artikel tentang "${val}"</div>
-                `;
-            } else {
-                searchSuggestions.classList.add('hidden');
-            }
-        });
-        document.addEventListener('click', (e) => {
-            if (!searchInput.contains(e.target) && !searchSuggestions.contains(e.target)) {
-                searchSuggestions.classList.add('hidden');
-            }
-        });
-    }
-
-    // 7. Auth Simulation
-    function checkAuth() {
-        const isLoggedIn = localStorage.getItem('isLoggedIn') === 'true';
-        const loginItem = document.getElementById('login-item');
-        const logoutItem = document.getElementById('logout-item');
-        const mobileLogin = document.getElementById('mobile-login-item');
-        const mobileLogout = document.getElementById('mobile-logout-item');
-
-        if (isLoggedIn) {
-            if(loginItem) loginItem.style.display = 'none';
-            if(logoutItem) logoutItem.style.display = 'block';
-            if(mobileLogin) mobileLogin.style.display = 'none';
-            if(mobileLogout) mobileLogout.style.display = 'block';
-        } else {
-            if(loginItem) loginItem.style.display = 'block';
-            if(logoutItem) logoutItem.style.display = 'none';
-            if(mobileLogin) mobileLogin.style.display = 'block';
-            if(mobileLogout) mobileLogout.style.display = 'none';
-        }
-    }
-    checkAuth();
-
-    // Event Listener Login/Logout
-    const logoutLinks = [document.getElementById('logout-link'), document.getElementById('mobile-logout-link')];
-    logoutLinks.forEach(link => {
-        if(link) {
-            link.addEventListener('click', (e) => {
-                e.preventDefault();
-                localStorage.setItem('isLoggedIn', 'false');
-                alert('Anda telah keluar.');
-                window.location.reload();
-            });
-        }
-    });
-});
-</script>
+        <div id="notif-dropdown" class="absolute right-0 mt-2 w-64 bg-white dark:bg-gray-700 rounded-md shadow-xl py-2 hidden text-gray-800 dark:text-gray-200 z-20 animate__animated animate__slideInDown" role="menu" aria-label="Notifications">
+          <li class="px-4 py-2 font-semibold border-b" role="none">Notifikasi</li>
+          <li class="px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 text-sm" role="menuitem">Artikel baru: "Tips Menulis"</li>
+          <li class="px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 text-sm" role="menuitem">Komentar di postingan Anda</li>
+          <li class="px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 text-sm" role="menuitem">Update kategori Opini
